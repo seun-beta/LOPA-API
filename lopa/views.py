@@ -13,7 +13,7 @@ from lopa import serializers
 class CauseData(APIView):
 
     def get(self, request):
-        cause = Cause.objects.all().values("description", "initial_frequency", "event_id", "target_frequency")
+        cause = Cause.objects.all().values("cause_id", "description", "initial_frequency", "event_id", "target_frequency")
         cause_list = list(cause)
         data = cause_list 
         new_data = CauseSerializer(data, many=True)
@@ -22,7 +22,7 @@ class CauseData(APIView):
 class CauseBarrierData(APIView):
     
     def get(self, request):
-        cause_barrier = CauseBarrier.objects.all().values("description", "pfd", "cause_id")
+        cause_barrier = CauseBarrier.objects.all().values("cause_barrier_id", "description", "pfd", "cause_id")
         cause_barrier_list = list(cause_barrier)
         data = cause_barrier_list 
         new_data = CauseBarrierSerializer(data, many=True)
@@ -32,7 +32,7 @@ class CauseBarrierData(APIView):
 class ConsequenceData(APIView):
     
     def get(self, request):
-        consequence = Consequence.objects.all().values("description", "initial_frequency", "target_frequency")
+        consequence = Consequence.objects.all().values("consequence_id", "description", "initial_frequency", "target_frequency")
         consequence_list = list(consequence)
         data = consequence_list 
         new_data = ConsequenceSerializer(data, many=True)
@@ -42,7 +42,7 @@ class ConsequenceData(APIView):
 class ConsequenceBarrierData(APIView):
     
     def get(self, request):
-        consequence_barrier = ConsequenceBarrier.objects.all().values("description", "pfd", "consequence_id")
+        consequence_barrier = ConsequenceBarrier.objects.all().values("consequence_barrier_id", "description", "pfd", "consequence_id")
         consequence_barrier_list = list(consequence_barrier)
         data = consequence_barrier_list 
         new_data = ConsequenceBarrierSerializer(data, many=True)
@@ -51,7 +51,7 @@ class ConsequenceBarrierData(APIView):
 class EventData(APIView):
     
     def get(self, request):
-        event = Event.objects.all().values("description", "cause_id", "consequence_id")
+        event = Event.objects.all().values("event_id","description", "cause_id", "consequence_id")
         event_list = list(event)
         data = event_list 
         new_data = EventSerializer(data, many=True)

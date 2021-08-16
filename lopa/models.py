@@ -29,7 +29,7 @@ class Consequence(models.Model):
     description = models.TextField(blank=True, null=True)
     initial_frequency = models.FloatField(blank=True, null=True)
     target_frequency = models.FloatField(blank=True, null=True)
-    cause_id = models.FloatField(blank=True, null=True)
+    consequence_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False

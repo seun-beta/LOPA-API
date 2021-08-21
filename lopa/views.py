@@ -10,61 +10,64 @@ from .serializers import CauseSerializer, CauseBarrierSerializer, \
     EventSerializer, ConsequenceSerializer, ConsequenceBarrierSerializer 
 from lopa import serializers
 
-
-class IndexView(View):
-    def get(self, request):
-        event_list = Event.objects.all()
-        ctx = {'event_list': event_list}
-        return render(request, 'lopa/index.html', ctx)
-
-
-class DataView(View):
+class EventList(APIView):
 
     def get(self, request):
-        pass
+        events = Event.objects.all()
+        event_datas = EventSerializer(events, many=True)
+        return Response(event_datas.data)
 
 
 class CauseData(APIView):
 
     def get(self, request, cause_id):
-        cause = Cause.objects.all().values("cause_id", "description", "initial_frequency", "event_id", "target_frequency")
-        cause_list = list(cause)
-        data = cause_list 
-        new_data = CauseSerializer(data, many=True)
-        return Response(new_data.data)
+        try:
+            cause = Cause.objects.get(pk=cause_id)
+            cause_serializer = CauseSerializer(cause)
+            return Response(cause_serializer.data, status=200)
+        except Cause.DoesNotExist:
+            return Response(None, status=400)
+
 
 class CauseBarrierData(APIView):
     
     def get(self, request, cause_barrier_id):
-        cause_barrier = CauseBarrier.objects.all().values("cause_barrier_id", "description", "pfd", "cause_id")
-        cause_barrier_list = list(cause_barrier)
-        data = cause_barrier_list 
-        new_data = CauseBarrierSerializer(data, many=True)
-        return Response(new_data.data)
-
+        try:
+            cause_barrier = CauseBarrier.objects.get(pk=cause_barrier_id)
+            cause_barrier_serializer = CauseBarrierSerializer(cause_barrier)
+            return Response(cause_barrier_serializer.data, status=200)
+        except CauseBarrier.DoesNotExist:
+            return Response(None, status=400)
 
 class ConsequenceData(APIView):
     
     def get(self, request, consequence_id):
-        consequence = Consequence.objects.all().values("consequence_id", "description", "initial_frequency", "target_frequency")
-        consequence_list = list(consequence)
-        data = consequence_list 
-        new_data = ConsequenceSerializer(data, many=True)
-        return Response(new_data.data)
+        try:
+            consequence = Consequence.objects.get(pk=consequence_id)
+            consequence_serializer = ConsequenceSerializer(consequence)
+            return Response(consequence_serializer.data, status=200)
+        except Consequence.DoesNotExist:
+            return Response(None, status=400)
+
 
 
 class ConsequenceBarrierData(APIView):
     
     def get(self, request, consequence_barrier_id):
-        consequence_barrier = ConsequenceBarrier.objects.get(pk=consequence_barrier_id)
-        new_data = ConsequenceBarrierSerializer(consequence_barrier, many=True)
-        return Response(new_data.data)
+        try:
+            consequence_barrier = ConsequenceBarrier.objects.get(pk=consequence_barrier_id)
+            consequence_barrier_serializer = ConsequenceBarrierSerializer(consequence_barrier)
+            return Response(consequence_barrier_serializer.data, status=200)
+        except ConsequenceBarrier.DoesNotExist:
+            return Response(None, status=400)
+
 
 class EventData(APIView):
     
     def get(self, request, event_id):
-        event = Event.objects.all().values("event_id","description", "cause_id", "consequence_id")
-        event_list = list(event)
-        data = event_list 
-        new_data = EventSerializer(data, many=True)
-        return Response(new_data.data)
+        try:
+            event = Event.objects.get(pk=event_id)
+            event_serializer = EventSerializer(event)
+            return Response(event_serializer.data, status=200)
+        except Event.DoesNotExist:
+            return Response(None, status=400)

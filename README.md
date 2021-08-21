@@ -24,6 +24,7 @@
 - [About](#about)
 - [Tech](#tech)
 - [Installation](#installation)
+- [Endpoints](#endpoints)
 - [Built Using](#built_using)
 - [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
@@ -92,7 +93,7 @@ Please install and set up the following packages first. Ugrade if you find the p
   * Get a single Consequence
   * Get a single Consequence Barrier
 
-## Endpoints
+## Endpoints<a name = "endpoints"></a>
 | Request type      | Endpoint          | Action |
 | ------------- |:-------------:| -----:|
 | GET         | / / | Get all Events|

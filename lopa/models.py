@@ -2,11 +2,10 @@ from django.db import models
 
 
 class Cause(models.Model):
-    cause_id = models.IntegerField(primary_key=True)
+    cause_id = models.AutoField(primary_key=True)
     description = models.TextField(blank=True, null=True)       
     initial_frequency = models.FloatField(blank=True, null=True)
-    event_id = models.IntegerField(blank=True, null=True)
-    target_frequency = models.FloatField(blank=True, null=True)
+    event_id = models.IntegerField(blank=True, null=True)       
 
     class Meta:
         managed = False
@@ -14,9 +13,9 @@ class Cause(models.Model):
 
 
 class CauseBarrier(models.Model):
-    cause_barrier_id = models.FloatField(primary_key=True)
+    cause_barrier_id = models.AutoField(primary_key=True)
     description = models.TextField(blank=True, null=True)
-    pfd = models.FloatField(blank=True, null=True)
+    pfd = models.FloatField(blank=True, null=True)       
     cause_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
@@ -25,10 +24,10 @@ class CauseBarrier(models.Model):
 
 
 class Consequence(models.Model):
-    consequence_id = models.IntegerField(primary_key=True)
+    consequence_id = models.AutoField(primary_key=True)
     description = models.TextField(blank=True, null=True)
-    initial_frequency = models.FloatField(blank=True, null=True)
     target_frequency = models.FloatField(blank=True, null=True)
+    event_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
@@ -36,11 +35,10 @@ class Consequence(models.Model):
 
 
 class ConsequenceBarrier(models.Model):
-    consequence_barrier_id = models.IntegerField(primary_key=True)
+    consequence_barrier_id = models.AutoField(primary_key=True)
     description = models.TextField(blank=True, null=True)
     pfd = models.FloatField(blank=True, null=True)
     consequence_id = models.IntegerField(blank=True, null=True)
-
 
     class Meta:
         managed = False
@@ -48,10 +46,9 @@ class ConsequenceBarrier(models.Model):
 
 
 class Event(models.Model):
-    event_id = models.IntegerField(primary_key=True)
+    event_id = models.AutoField(primary_key=True)
     description = models.TextField(blank=True, null=True)
-    cause_id = models.IntegerField(blank=True, null=True)
-    consequence_id = models.IntegerField(blank=True, null=True)
+    target_frequency = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False

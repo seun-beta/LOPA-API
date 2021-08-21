@@ -73,7 +73,7 @@ Please install and set up the following packages first. Ugrade if you find the p
   ```
 * Run server to ensure everything is running properly.
   ```sh
-  python lopa.py
+  python runserver manage.py
   ```
 * Deactivate the virtual environment with:
   ```sh
@@ -86,19 +86,21 @@ Please install and set up the following packages first. Ugrade if you find the p
 * Use `Postman` to consume available endpoints
 * A user can:
   * Get all Events
-  * Get all Causes
-  * Get all Cause Barriers
-  * Get all Consequences
-  * Get all Consequence Barriers
+  * Get a single Event
+  * Get a single Cause
+  * Get a single Cause Barrier
+  * Get a single Consequence
+  * Get a single Consequence Barrier
 
 ## Endpoints
 | Request type      | Endpoint          | Action |
 | ------------- |:-------------:| -----:|
-| GET         | /event/ | Get all Events|
-| GET         | /cause/  | Get all Causes |
-| GET         | /cause_barrier/ | Get all Cause Barriers |
-| GET          | /consequence/     | Get all Consequences
-| GET        | /consequence_barrier/ | Get all Consequence Barriers |
+| GET         | / / | Get all Events|
+| GET         | /event/:id  | Get an Event |
+| GET         | /cause/:id  | Get a Cause |
+| GET         | /cause_barrier/:id  | Get a Cause Barrier |
+| GET          | /consequence/:id      | Get a Consequence
+| GET        | /consequence_barrier/:id  | Get a Consequence Barrier |
 
 
 

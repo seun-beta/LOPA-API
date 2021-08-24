@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-wbt=self^%rb5otg2nuqabi1&#e21ittx-@t$16)t6!$n1z!b7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["lopa-web.azurewebsites.net", "lopa-web-bow-tie.azurewebsites.net", "127.0.0.1:5500"]
 
 
 # Application definition
